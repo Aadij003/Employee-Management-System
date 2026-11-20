@@ -32,7 +32,7 @@ const Login = () => {
               setPassword(e.target.value)
             }}
             required className='border-2 outline-none border-emerald-600 py-3 px-5 rounded-full text-xl placeholder:text-gray-400 mt-3' type="password" placeholder='Enter password' />
-            <button className='border-2 outline-none border-none bg-emerald-600 py-3 px-5 rounded-full text-xl mt-5'>Login</button>
+            <button className='border-2 outline-none border-none bg-green-500 hover:bg-green-600 py-3 px-27 font-bold rounded-full text-xl mt-5'>Log in</button>
         </form>
      </div>
     </div>
