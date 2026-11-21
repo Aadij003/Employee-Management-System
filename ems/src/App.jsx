@@ -3,20 +3,43 @@ import Login from './components/Auth/Login'
 import EmployeeDashboard from './components/Dashboard/EmployeeDashboard'
 import AdminDashboard from './components/Dashboard/AdminDashboard'
 import { useState } from 'react'
-import AuthProvider from './context/AuthProvider'
+import {AuthContext} from './context/AuthProvider'
+
 
   const App = () => {
    
     const [user, setUser] = useState(null)
-      const authData =useContext(AuthProvider)
+    const [loggedInUserData, setloggedInUserData] = useState(null)
+      const authData =useContext(AuthContext)
+      
+      // useEffect(() => {
+      //   if(authData){
+      //     const loggedInUser=localStorage.getItem("loggedInUser")
+
+      //     if(loggedInUser){
+      //       setUser(loggedInUser.role)
+      //     }
+      //   }
+        
+      // }, [authData])
+      
+      
 
 
     const handleLogin=(email,password)=>{
      if(email=='admin@gmail.com' && password=='123'){
      setUser("admin")
+      localStorage.setItem('loggedInUser',JSON.stringify({role:'admin'}))
      }
-     else if(email=='user@gmail.com' && password=='123'){
-      setUser("employee")
+     else if(authData){
+      const employee= authData.employees.find((e)=>e.email==email && e.password==password)
+
+      if(employee){
+        setUser("employee")
+        setloggedInUserData(employee)
+      localStorage.setItem('loggedInUser',JSON.stringify({role:'employee'}))
+      }
+     
      }
      
      else{
@@ -32,7 +55,7 @@ return (
 
     {user === 'admin' && <AdminDashboard />}
 
-    {user === 'employee' && <EmployeeDashboard />}
+    {user === 'employee' && <EmployeeDashboard data={loggedInUserData} />}
   </>
 )
 }
