@@ -1,55 +1,34 @@
 import React from 'react'
+import AcceptTask from './AcceptTask'
+import NewTask from './NewTask'
+import CompleteTask from './CompleteTask'
+import FailedTask from './FailedTask'
 
 const TaskList = ({data}) => {
-  return (
-    <div id='tasklist' className='h-[55%] w-full py-5 mt-10 flex items-center justify-start gap-5 overflow-x-auto flex-nowrap'>
-      <div className='shrink-0 h-full bg-emerald-500 p-5 w-75 rounded-xl'>
-        <div className='flex justify-between items-center'>
-            <h3 className='bg-red-600 rounded px-3 text-sm py-1 '>High</h3>
-            <h4 className='text-sm'>20 Feb 2024</h4>
-        </div>
-        <h2 className='mt-5 text-2xl font-semibold'>Make a Youtube Video</h2>
-        <p className='text-sm mt-2'>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam quae consequuntur aspernatur laudantium nesciunt reiciendis.
-        </p>
-      </div>
+    return (
+    <div id='tasklist' className='h-[50%] w-full py-5 mt-10 flex items-center justify-start gap-5 overflow-x-auto flex-nowrap'>
+
+    {data.tasks.map((elem,idx)=>{
      
-   
+       if(elem.active){
+         return <AcceptTask key={idx} data={elem}/>
+       }
 
-           <div className='shrink-0 h-full bg-violet-700 p-5 w-75 rounded-xl'>
-        <div className='flex justify-between items-center'>
-            <h3 className='bg-red-600 rounded px-3 text-sm py-1 '>High</h3>
-            <h4 className='text-sm'>20 Feb 2024</h4>
-        </div>
-        <h2 className='mt-5 text-2xl font-semibold'>Make a Youtube Video</h2>
-        <p className='text-sm mt-2'>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam quae consequuntur aspernatur laudantium nesciunt reiciendis.
-        </p>
-      </div>
+       if(elem.newTask){
+       return  <NewTask key={idx} data={elem}/>
+       }
 
+       if(elem.completed){
+        return <CompleteTask key={idx} data={elem}/>
+       }
 
+       if(elem.failed){
+        return <FailedTask key={idx} data={elem}/>
+       }
 
-           <div className='shrink-0 h-full bg-orange-600 p-5 w-75 rounded-xl'>
-        <div className='flex justify-between items-center'>
-            <h3 className='bg-red-600 rounded px-3 text-sm py-1 '>High</h3>
-            <h4 className='text-sm'>20 Feb 2024</h4>
-        </div>
-        <h2 className='mt-5 text-2xl font-semibold'>Make a Youtube Video</h2>
-        <p className='text-sm mt-2'>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam quae consequuntur aspernatur laudantium nesciunt reiciendis.
-        </p>
-      </div>
-
-           <div className='shrink-0 h-full bg-emerald-600 p-5 w-75 rounded-xl'>
-        <div className='flex justify-between items-center'>
-            <h3 className='bg-red-600 rounded px-3 text-sm py-1 '>High</h3>
-            <h4 className='text-sm'>20 Feb 2024</h4>
-        </div>
-        <h2 className='mt-5 text-2xl font-semibold'>Make a Youtube Video</h2>
-        <p className='text-sm mt-2'>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam quae consequuntur aspernatur laudantium nesciunt reiciendis.
-        </p>
-      </div>
+    })}
+ 
+  
 
 
     </div>
