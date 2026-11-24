@@ -2,9 +2,6 @@ import React, { useContext } from 'react'
 
 const AcceptTask = ({data}) => {
 
-    console.log(data);
-    
-
   return (
            
              <div className='shrink-0 h-full bg-gray-600 p-5 w-75 rounded-xl'>
