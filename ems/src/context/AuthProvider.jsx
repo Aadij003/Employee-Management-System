@@ -17,9 +17,9 @@ const AuthProvider = ({children}) => {
     
        setLocalStorage()
 
-     const {employees,admin}=getLocalStorage()
+     const {employees}=getLocalStorage()
 
-   setuserData({employees,admin})
+   setuserData(employees)
    
      
    }, [])
@@ -27,7 +27,7 @@ const AuthProvider = ({children}) => {
 
   return (
     <div>
-      <AuthContext.Provider value={userData}>
+      <AuthContext.Provider value={[userData,setuserData]}>
         {children}
       </AuthContext.Provider>
     </div>
